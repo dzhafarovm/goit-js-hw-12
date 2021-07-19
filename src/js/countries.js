@@ -26,12 +26,12 @@ function onChange() {
 
 function renderCountryCard(countries) {
   if (countries.length === 1) {
-    divEl.insertAdjacentHTML('beforeend', countryCard(countries[0]));
+    divEl.innerHTML = countryCard(countries[0]);
+  } else if (countries.length >= 2 && countries.length <= 10) {
+    ulEl.innerHTML = renderCountryList(countries);
   } else if (countries.length > 10) {
     Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
   } else if (countries.status === 404) {
     Notiflix.Notify.failure('Oops, there is no country with that name');
-  } else if (countries.length >= 2 && countries.length <= 10) {
-    ulEl.insertAdjacentHTML('afterbegin', renderCountryList(countries));
   }
 }
