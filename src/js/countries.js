@@ -19,9 +19,7 @@ function onChange() {
   divEl.innerHTML = '';
   nameCountry = inputEL.value;
 
-  API.fetchCountries(nameCountry)
-    .then(renderCountryCard)
-    .catch(error => console.log(error));
+  API.fetchCountries(nameCountry).then(renderCountryCard).catch(onFetchError);
 }
 
 function renderCountryCard(countries) {
@@ -34,4 +32,8 @@ function renderCountryCard(countries) {
   } else if (countries.status === 404) {
     Notiflix.Notify.failure('Oops, there is no country with that name');
   }
+}
+
+function onFetchError() {
+  Notiflix.Notify.warning('Enter the country name');
 }
